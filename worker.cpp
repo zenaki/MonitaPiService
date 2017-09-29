@@ -8,8 +8,13 @@ worker::worker(QObject *parent) : QObject(parent)
 #ifndef QT_NO_SSL
     connect(manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), this, SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
 #endif
+
+    id_sequence = 0;
+
 //    this->request("http://m2prime.aissat.com/RestMessages.svc/get_return_messages.json/?access_id=150103286&password=ZRM3B9SSDI&start_utc=2017-03-23%2000:00:00");
-    this->request("https://tmspremier/piwebapi/");
+//    this->request("https://tmspremier/piwebapi/points?path=\\\\TMSPREMIER\\SINUSOID");
+    this->readJSONFile("C:/Users/Administrator/Desktop/MonitaPiService/sample 1.json");
+    id_sequence = 0;
 }
 
 void worker::request(QString urls)
@@ -28,6 +33,26 @@ void worker::parsing(QByteArray data)
 {
     QJsonDocument JsonDoc = QJsonDocument::fromJson(data);
     QJsonObject object = JsonDoc.object();
+
+    if (id_sequence == 0) {
+        piServer.webID = object.value("WebId").toString();
+        piServer.id = object.value("Id").toInt();
+        piServer.tagName = object.value("Name").toString();
+        piServer.pointType = object.value("PointType").toString();
+
+        QJsonObject link = object.value("Links").toObject();
+        if (!link.isEmpty()) {
+            id_sequence = 1;
+//            this->request(link.value("Value").toString());
+            this->readJSONFile("C:/Users/Administrator/Desktop/MonitaPiService/sample 2.json");
+        }
+    }
+
+    if (id_sequence == 1) {
+        piServer.val.value = object.value("Value").toDouble();
+        piServer.val.time = QDateTime::fromString(object.value("Timestamp").toString(), "yyyy-MM-ddTHH:mm:ssZ");
+        id_sequence = 2;
+    }
 
     qDebug() << "Finish";
 }
@@ -55,3 +80,13 @@ void worker::sslErrors(QNetworkReply *reply, const QList<QSslError> &errors)
     reply->ignoreSslErrors();
 }
 #endif
+
+void worker::readJSONFile(QString path) {
+    QFile visual_json_file(path);
+    if (visual_json_file.exists()) {
+        if (visual_json_file.open(QIODevice::ReadWrite)) {
+            QByteArray readFile = visual_json_file.readAll();
+            this->parsing(readFile);
+        }
+    }
+}
