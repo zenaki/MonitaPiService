@@ -1,0 +1,23 @@
+{
+  "WebId": "P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA",
+  "Id": 1,
+  "Name": "SINUSOID",
+  "Descriptor": "12 Hour Sine Wave",
+  "PointClass": "classic",
+  "PointType": "Float32",
+  "DigitalSetName": "",
+  "EngineeringUnits": "",
+  "Step": false,
+  "Future": false,
+  "Links": {
+    "Self": "https://tmspremier/piwebapi/points/P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA",
+    "DataServer": "https://tmspremier/piwebapi/dataservers/s0kxaEHmyBS0qpEYOdDUHV2AVE1TUFJFTUlFUg",
+    "Attributes": "https://tmspremier/piwebapi/points/P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA/attributes",
+    "Value": "https://tmspremier/piwebapi/streams/P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA/value",
+    "InterpolatedData": "https://tmspremier/piwebapi/streams/P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA/interpolated",
+    "RecordedData": "https://tmspremier/piwebapi/streams/P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA/recorded",
+    "PlotData": "https://tmspremier/piwebapi/streams/P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA/plot",
+    "SummaryData": "https://tmspremier/piwebapi/streams/P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA/summary",
+    "EndValue": "https://tmspremier/piwebapi/streams/P0kxaEHmyBS0qpEYOdDUHV2AAQAAAAVE1TUFJFTUlFUlxTSU5VU09JRA/end"
+  }
+}
