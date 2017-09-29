@@ -33,6 +33,23 @@ struct piData {
     struct piDataValue val;
 };
 
+#include <QDateTime>
+#include <QFile>
+
+struct piDataValue {
+    QDateTime time;
+    double value;
+};
+
+struct piData {
+    int id;
+    QString tagName;
+    QString pointType;
+    QString webID;
+
+    struct piDataValue val;
+};
+
 class worker : public QObject
 {
     Q_OBJECT
