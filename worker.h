@@ -33,23 +33,6 @@ struct piData {
     struct piDataValue val;
 };
 
-#include <QDateTime>
-#include <QFile>
-
-struct piDataValue {
-    QDateTime time;
-    double value;
-};
-
-struct piData {
-    int id;
-    QString tagName;
-    QString pointType;
-    QString webID;
-
-    struct piDataValue val;
-};
-
 class worker : public QObject
 {
     Q_OBJECT
@@ -58,15 +41,18 @@ public:
 
     void request(QString urls);
     void parsing(QByteArray data);
-    void readJSONFile(QString path);
+    QStringList readJSONFile(QString path);
 
     QNetworkAccessManager *manager;
 
     struct piData piServer;
+    QStringList path;
 
     int id_sequence;
-//    QSqlDatabase *db;
+//    QSqlDatabase db;
 
+    void writeToDB();
+    void readFromDB();
 public slots:
     void replyFinished(QNetworkReply *reply);
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
